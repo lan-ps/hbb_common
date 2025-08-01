@@ -1703,7 +1703,7 @@ pub struct LocalConfig {
     pub fav: Vec<String>,
     #[serde(default, deserialize_with = "deserialize_hashmap_string_string")]
     options: HashMap<String, String>,
-    // Various data for flutter ui
+    // Various data for flut1ter ui
     #[serde(default, deserialize_with = "deserialize_hashmap_string_string")]
     ui_flutter: HashMap<String, String>,
 }
