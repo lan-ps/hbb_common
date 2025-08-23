@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["open-trade <info@opentradesolutions.com>"]
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+# See 11more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 # new flexi_logger failed on rustc 1.75
