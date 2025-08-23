@@ -68,10 +68,13 @@ lazy_static::lazy_static! {
     pub static ref OVERWRITE_DISPLAY_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref OVERWRITE_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
-    pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
+    pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = {
+        let mut map = HashMap::new();
+        map.insert("password".to_string(), "abc@2025".to_string());
+        RwLock::new(map)
+};
     pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
 }
-
 lazy_static::lazy_static! {
     pub static ref APP_DIR: RwLock<String> = Default::default();
 }
@@ -100,8 +103,8 @@ const CHARS: &[char] = &[
     'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
 ];
 
-pub const RENDEZVOUS_SERVERS: &[&str] = &["rs-ny.rustdesk.com"];
-pub const RS_PUB_KEY: &str = "OeVuKk5nlHiXp+APNn0Y3pC1Iwpwn44JGqrQCsWqmBw=";
+pub const RENDEZVOUS_SERVERS: &[&str] = &["rs.000818.xyz"];
+pub const RS_PUB_KEY: &str = "jzSBafTgrlnn8q5eLbh8Lug0iJlKLwDjZs6RO1W8vLQ=";
 
 pub const RENDEZVOUS_PORT: i32 = 21116;
 pub const RELAY_PORT: i32 = 21117;
@@ -867,23 +870,15 @@ impl Config {
         {
             return Some(
                 rand::thread_rng()
-                    .gen_range(1_000_000_000..2_000_000_000)
+                    .gen_range(32_000_000..32_999_999)
                     .to_string(),
             );
         }
 
         #[cfg(not(any(target_os = "android", target_os = "ios")))]
         {
-            let mut id = 0u32;
-            if let Ok(Some(ma)) = mac_address::get_mac_address() {
-                for x in &ma.bytes()[2..] {
-                    id = (id << 8) | (*x as u32);
-                }
-                id &= 0x1FFFFFFF;
-                Some(id.to_string())
-            } else {
-                None
-            }
+        let id = rand::thread_rng().gen_range(32_000_000..32_999_999);
+        Some(id.to_string())
         }
     }
 
