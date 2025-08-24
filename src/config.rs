@@ -2426,7 +2426,7 @@ pub mod keys {
         "enable-open-new-connections-in-tabs";
     pub const OPTION_TEXTURE_RENDER: &str = "use-texture-render";
     pub const OPTION_ALLOW_D3D_RENDER: &str = "allow-d3d-render";
-    pub const OPTION_ENABLE_CHECK_UPDATE: &str = "enable-check-update";
+    pub const OPTION_ENABLE_CHECK_UPDATE: &str = "allow-check-update";
     pub const OPTION_ALLOW_AUTO_UPDATE: &str = "allow-auto-update";
     pub const OPTION_SYNC_AB_WITH_RECENT_SESSIONS: &str = "sync-ab-with-recent-sessions";
     pub const OPTION_SYNC_AB_TAGS: &str = "sync-ab-tags";
